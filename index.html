@@ -16,6 +16,21 @@
   <body>
     <header></header>
     <main class="container mx-auto px-20">
+      <!-- Open the modal using ID.showModal() method -->
+      <dialog id="show_modal_box" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box h-full max-h-max w-auto">
+          <div
+            id="show-details-container"
+            class="flex flex-col justify-center px-6 gap-3"
+          ></div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn btn-error px-10">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
       <!-- Search Phones -->
       <h2 class="text-4xl font-bold text-center py-8">Search your phone</h2>
       <div class="flex items-start justify-center">
@@ -35,7 +50,10 @@
       </div>
       <!-- Card Start -->
       <section>
-        <div id="loading-spinner" class="flex justify-center items-center py-10 hidden">
+        <div
+          id="loading-spinner"
+          class="flex justify-center items-center py-10 hidden"
+        >
           <span class="loading loading-dots loading-lg"></span>
         </div>
         <div
@@ -46,7 +64,10 @@
           id="show-all-container"
           class="flex justify-center items-center py-10 hidden"
         >
-          <button onclick="showAllPhone()" class="btn btn-primary text-center px-10">
+          <button
+            onclick="showAllPhone()"
+            class="btn btn-primary text-center px-10"
+          >
             Show All
           </button>
         </div>

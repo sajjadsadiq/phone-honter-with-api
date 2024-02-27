@@ -1,4 +1,4 @@
-const dataLoad = async (searchPhone, isShowAll) => {
+const dataLoad = async (searchPhone = "iphone", isShowAll) => {
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchPhone}`;
   const res = await fetch(url);
   const data = await res.json();
@@ -26,9 +26,8 @@ const displayPhones = (phones, isShowAll) => {
     phones = phones.slice(0, 3);
   }
 
-
   phones.forEach((phone) => {
-    const { image, phone_name } = phone;
+    const { image, phone_name, slug } = phone;
     const phoneDiv = document.createElement("div");
 
     phoneDiv.classList = "card bg-base-100 shadow-xl p-6";
@@ -46,7 +45,7 @@ const displayPhones = (phones, isShowAll) => {
           </p>
           <h2 class="card-title font-bold">$999</h2>
           <div class="card-actions justify-end">
-            <button class="btn btn-primary">Show Details</button>
+            <button onClick="showDetailsModal('${slug}')" class="btn btn-primary">Show Details</button>
           </div>
         </div>
     `;
@@ -79,4 +78,45 @@ const toggleLadingSpinner = (isLoading) => {
 const showAllPhone = () => {
   handleSearchPhone(true);
 };
+
+// Show Details Modal
+const showDetailsModal = async (id) => {
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/phone/${id}`
+  );
+  const data = await res.json();
+  const phone = data.data;
+  showPhoneDetails(phone);
+};
+
+// show phone details
+const showPhoneDetails = (phone) => {
+  // console.log(phone);
+  const { brand, image, name, slug, releaseDate, mainFeatures, others } = phone;
+  const { storage, displaySize, chipSet, memory } = mainFeatures;
+  console.log(phone);
+  const showDetailsContainer = document.getElementById(
+    "show-details-container"
+  );
+
+  showDetailsContainer.innerHTML = `
+  <figure class="flex flex-col items-center justify-center">
+      <img class="bg-[#F3F9FE] p-10 rounded-xl"
+            src="${image}"
+      />
+  </figure>
+  <h2 class="card-title font-bold">${name}</h2>
+  <p><strong>Storage: </strong>${storage}</p>
+  <p><strong>Display Size: </strong>${displaySize}</p>
+  <p><strong>Chipset: </strong>${chipSet}</p>
+  <p><strong>Memory: </strong>${memory}</p>
+  <p><strong>Slug: </strong>${slug}</p>
+  <p><strong>Relase Date: </strong>${releaseDate}</p>
+  <p><strong>Brand: </strong>${brand}</p>
+  <p><strong>GPS: </strong>${others ? others.GPS : ""}</p>
+  
+  `;
+  show_modal_box.showModal();
+};
+
 dataLoad();
