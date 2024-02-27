@@ -15,11 +15,27 @@
   </head>
   <body>
     <header></header>
-    <main class="container mx-auto">
+    <main class="container mx-auto px-20">
+      <!-- Search Phones -->
+      <h2 class="text-4xl font-bold text-center py-8">Search your phone</h2>
+      <div class="flex items-start justify-center">
+        <div class="join pb-20">
+          <input id="input-field"
+            class="input input-bordered join-item pr-20"
+            placeholder="Search your phone"
+          />
+          <button
+            onclick="handleSearchPhone()"
+            class="btn join-item rounded-r-full"
+          >
+            Search
+          </button>
+        </div>
+      </div>
       <!-- Card Start -->
       <div
         id="phones-container"
-        class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 px-20"
+        class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
       ></div>
       <!-- Card End -->
     </main>
