@@ -6,6 +6,7 @@ const dataLoad = async (searchPhone) => {
   displayPhones(phones);
 };
 
+// Show Display Phone
 const displayPhones = (phones) => {
   const phoneContainre = document.getElementById("phones-container");
 
@@ -48,11 +49,26 @@ const displayPhones = (phones) => {
     `;
     phoneContainre.appendChild(phoneDiv);
   });
+
+  // hide loading spinner
+  toggleLadingSpinner(false);
 };
 
+// Handle Search Phone
 const handleSearchPhone = () => {
+  toggleLadingSpinner(true);
   const searchField = document.getElementById("input-field");
   const searchValue = searchField.value;
   dataLoad(searchValue);
+};
+
+// Loading Spinner
+const toggleLadingSpinner = (isLoading) => {
+  const loadingSpinner = document.getElementById("loading-spinner");
+  if (isLoading === true) {
+    loadingSpinner.classList.remove("hidden");
+  } else {
+    loadingSpinner.classList.add("hidden");
+  }
 };
 dataLoad();
