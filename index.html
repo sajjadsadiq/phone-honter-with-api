@@ -20,7 +20,8 @@
       <h2 class="text-4xl font-bold text-center py-8">Search your phone</h2>
       <div class="flex items-start justify-center">
         <div class="join pb-20">
-          <input id="input-field"
+          <input
+            id="input-field"
             class="input input-bordered join-item pr-20"
             placeholder="Search your phone"
           />
@@ -33,10 +34,20 @@
         </div>
       </div>
       <!-- Card Start -->
-      <div
-        id="phones-container"
-        class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
-      ></div>
+      <section>
+        <div
+          id="phones-container"
+          class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
+        ></div>
+        <div
+          id="show-all-container"
+          class="flex justify-center items-center py-10 hidden"
+        >
+          <button id="show-all-phone" class="btn btn-primary text-center px-10">
+            Show All
+          </button>
+        </div>
+      </section>
       <!-- Card End -->
     </main>
     <footer></footer>

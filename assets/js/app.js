@@ -11,7 +11,18 @@ const displayPhones = (phones) => {
 
   // Clear Phone Container card before adding new cards
   phoneContainre.textContent = "";
-  
+
+  // Display show all button if there are more than 6 phones
+  const showAllContainer = document.getElementById("show-all-container");
+  if (phones.length > 6) {
+    showAllContainer.classList.remove("hidden");
+  } else {
+    showAllContainer.classList.add("hidden");
+  }
+
+  //   Display Only First 6 Phones
+  phones = phones.slice(0, 6);
+
   phones.forEach((phone) => {
     const { image, phone_name } = phone;
     const phoneDiv = document.createElement("div");
@@ -39,7 +50,6 @@ const displayPhones = (phones) => {
   });
 };
 
-// handle Search
 const handleSearchPhone = () => {
   const searchField = document.getElementById("input-field");
   const searchValue = searchField.value;
